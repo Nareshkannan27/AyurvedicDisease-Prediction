@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disease Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        form {
+            max-width: 600px;
+            margin: auto;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        #prediction {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Disease Prediction</h2>
+     <form id="prediction-form">
+        <label for="itching">Itching (0 or 1):</label>
+        <input type="number" id="itching" name="itching" min="0" max="1" required>
+
+        <label for="skin_rash">Skin Rash (0 or 1):</label>
+        <input type="number" id="skin_rash" name="skin_rash" min="0" max="1" required>
+
+        <label for="nodal_skin_eruptions">Nodal Skin Eruptions (0 or 1):</label>
+        <input type="number" id="nodal_skin_eruptions" name="nodal_skin_eruptions" min="0" max="1" required>
+
+        <label for="stomach_pain">Stomach Pain (0 or 1):</label>
+        <input type="number" id="stomach_pain" name="stomach_pain" min="0" max="1" required>
+
+        <label for="skin_peeling">Skin Peeling (0 or 1):</label>
+        <input type="number" id="skin_peeling" name="skin_peeling" min="0" max="1" required>
+
+        <label for="shivering">Shivering (0 or 1):</label>
+        <input type="number" id="shivering" name="shivering" min="0" max="1" required>
+
+        <label for="continuous_sneezing">Continuous Sneezing (0 or 1):</label>
+        <input type="number" id="continuous_sneezing" name="continuous_sneezing" min="0" max="1" required>
+
+        <label for="lethargy">Lethargy (0 or 1):</label>
+        <input type="number" id="lethargy" name="lethargy" min="0" max="1" required>
+
+        <input type="submit" value="Predict">
+    </form>
+
+    <div id="prediction"></div>
+
+    <script>
+        document.getElementById('prediction-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('prediction').innerHTML = data;
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

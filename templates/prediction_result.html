@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p><strong>Prediction:</strong> {{ prediction }}</p>
+    <p><strong>Prognosis:</strong> {{ prognosis }}</p>
+
+    {% if prediction %}
+    <h2>Ayurvedic Treatment Recommendation</h2>
+    {% if prediction == 'Vata' %}
+    <p>Ayurvedic treatment for balancing Vata dosha may include consuming warm, nourishing foods; performing self-massage with warm oils like sesame or almond; practicing grounding yoga poses; and following a regular daily routine.</p>
+    {% elif prediction == 'Pitta' %}
+    <p>Ayurvedic treatment for balancing Pitta dosha may include consuming cooling foods like cucumber and coconut; practicing meditation or Pranayama to reduce stress and inflammation; and avoiding hot, spicy, and acidic foods.</p>
+    {% elif prediction == 'Kapha' %}
+    <p>Ayurvedic treatment for balancing Kapha dosha may include consuming warm, light foods and spices like ginger and black pepper; engaging in regular exercise or yoga to promote circulation and metabolism; and practicing activities to enhance digestion and reduce stagnation.</p>
+    {% endif %}
+    {% endif %}
+</body>
+</html>
